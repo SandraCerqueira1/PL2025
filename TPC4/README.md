@@ -29,7 +29,7 @@ VAR ?desc
 WHERE where
 LCB {
 VAR ?s
-ID a
+A a
 URI dbo:MusicalArtist
 DOT .
 VAR ?s
