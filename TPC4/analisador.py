@@ -26,8 +26,7 @@ tokens = tokens + list(reserved.values())
 
 t_DOT = r'\.'
 t_LCB = r'\{'
-t_RCB = r'\}'
-t_A = r'\ba\b' 
+t_RCB = r'\}' 
 t_COMMENT = r'\#.*'
 t_LANG = r'@[a-z]{2,3}(-[a-z]{2,3})?'  
 t_ignore = ' \t'
@@ -44,6 +43,11 @@ def t_URI(t):
 def t_STRING(t):
     r'"[^"]*"'
     return t
+
+def t_A(t):
+    r'\ba\b'
+    return t
+
 
 def t_INT(t):
     r'\d+'
