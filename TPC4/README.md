@@ -19,10 +19,43 @@ select ?nome ?desc where {
 } LIMIT 1000
 
 ```
-## Funcionalidades
+## A Saber
+Para desenvolver esta solução usei o ply.lex e obtive o seguinte output
+```
+COMMENT # DBPedia: obras de Chuck Berry
+SELECT select
+VAR ?nome
+VAR ?desc
+WHERE where
+LCB {
+VAR ?s
+ID a
+URI dbo:MusicalArtist
+DOT .
+VAR ?s
+URI foaf:name
+STRING "Chuck Berry"
+LANG @en
+DOT .
+VAR ?w
+URI dbo:artist
+VAR ?s
+DOT .
+VAR ?w
+URI foaf:name
+VAR ?nome
+DOT .
+VAR ?w
+URI dbo:abstract
+VAR ?desc
+RCB }
+LIMIT LIMIT
+INT 1000
+```
+
 
  
-## Utilização
+
 
 
 
