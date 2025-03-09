@@ -1,0 +1,50 @@
+[
+    {
+        "cod": "A10",
+        "nome": "sumol 0.33L",
+        "quant": 9,
+        "preco": 1.5
+    },
+    {
+        "cod": "B22",
+        "nome": "barrinha de cereais",
+        "quant": 6,
+        "preco": 1.2
+    },
+    {
+        "cod": "C33",
+        "nome": "wrap de frango",
+        "quant": 5,
+        "preco": 2.5
+    },
+    {
+        "cod": "D44",
+        "nome": "pipocas",
+        "quant": 7,
+        "preco": 1.8
+    },
+    {
+        "cod": "E55",
+        "nome": "pastilhas el\u00e1sticas",
+        "quant": 10,
+        "preco": 0.5
+    },
+    {
+        "cod": "F66",
+        "nome": "coca cola",
+        "quant": 8,
+        "preco": 1.0
+    },
+    {
+        "cod": "G77",
+        "nome": "amendoins",
+        "quant": 6,
+        "preco": 1.7
+    },
+    {
+        "cod": "H88",
+        "nome": "agua",
+        "quant": 8,
+        "preco": 0.7
+    }
+]
