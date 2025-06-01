@@ -7,6 +7,7 @@
 </p>
 
 <h3 align="center">Licenciatura em Engenharia Informática <br> Processamento de Linguagens <br> 2024/2025 </h3>
+<h3 align="center">Grupo 17 </h3>
 
 <h3 align="center"> Autores 🤝 </h3>
 
