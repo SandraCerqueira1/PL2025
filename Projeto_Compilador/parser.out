@@ -1,0 +1,2657 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> PROGRAM ID SEMI opt_variable block DOT
+Rule 2     opt_variable -> variables
+Rule 3     opt_variable -> empty
+Rule 4     variables -> VAR vars
+Rule 5     vars -> listVar DOISPONTOS datatype SEMI
+Rule 6     vars -> listVar DOISPONTOS datatype SEMI vars
+Rule 7     listVar -> ID
+Rule 8     listVar -> ID VIRG listVar
+Rule 9     datatype -> simpleType
+Rule 10    datatype -> structuredType
+Rule 11    simpleType -> INTEGER_TYPE
+Rule 12    simpleType -> BOOLEAN_TYPE
+Rule 13    simpleType -> STRING_TYPE
+Rule 14    simpleType -> REAL_TYPE
+Rule 15    simpleType -> CHAR_TYPE
+Rule 16    structuredType -> arrayType
+Rule 17    arrayType -> ARRAY LSQBRACKET NUMBER RANGE NUMBER RSQBRACKET OF simpleType
+Rule 18    empty -> <empty>
+Rule 19    variable -> ID
+Rule 20    variable -> ID LSQBRACKET expression RSQBRACKET
+Rule 21    block -> BEGIN stmt_list opt_semi END
+Rule 22    opt_semi -> SEMI
+Rule 23    opt_semi -> empty
+Rule 24    stmt_list -> stmt
+Rule 25    stmt_list -> stmt_list SEMI stmt
+Rule 26    stmt -> assign_stmt
+Rule 27    stmt -> conditional_stmt
+Rule 28    stmt -> cicle_stmt
+Rule 29    stmt -> readLn_stmt
+Rule 30    stmt -> write_stmt
+Rule 31    stmt -> writeln_stmt
+Rule 32    assign_stmt -> variable ASSIGN expression
+Rule 33    expression -> logical_or_expr
+Rule 34    logical_or_expr -> logical_or_expr OR logical_and_expr
+Rule 35    logical_or_expr -> logical_and_expr
+Rule 36    logical_and_expr -> logical_and_expr AND logical_not_expr
+Rule 37    logical_and_expr -> logical_not_expr
+Rule 38    logical_not_expr -> NOT logical_not_expr
+Rule 39    logical_not_expr -> relational_expr
+Rule 40    relational_expr -> simple_exp
+Rule 41    relational_expr -> simple_exp relational_operator simple_exp
+Rule 42    relational_operator -> EQUAL
+Rule 43    relational_operator -> NEQUAL
+Rule 44    relational_operator -> LESSTHEN
+Rule 45    relational_operator -> LESSEQUALS
+Rule 46    relational_operator -> GREATTHAN
+Rule 47    relational_operator -> GREATEQUALS
+Rule 48    simple_exp -> simple_exp add_op termo
+Rule 49    simple_exp -> termo
+Rule 50    add_op -> PLUS
+Rule 51    add_op -> MINUS
+Rule 52    termo -> termo mul_op fator
+Rule 53    termo -> fator
+Rule 54    mul_op -> MULT
+Rule 55    mul_op -> DIVIDE
+Rule 56    mul_op -> MODULO
+Rule 57    mul_op -> DIV_INT
+Rule 58    fator -> LENGTH LPAREN expression RPAREN
+Rule 59    fator -> LPAREN expression RPAREN
+Rule 60    fator -> variable
+Rule 61    fator -> NUMBER
+Rule 62    fator -> REAL_LITERAL
+Rule 63    fator -> STRING_LITERAL
+Rule 64    fator -> TRUE
+Rule 65    fator -> FALSE
+Rule 66    readLn_stmt -> READLN LPAREN variable RPAREN
+Rule 67    write_stmt -> WRITE LPAREN output_args RPAREN
+Rule 68    writeln_stmt -> WRITELN LPAREN output_args RPAREN
+Rule 69    writeln_stmt -> WRITELN LPAREN RPAREN
+Rule 70    output_args -> output_item
+Rule 71    output_args -> output_item VIRG output_args
+Rule 72    output_item -> STRING_LITERAL
+Rule 73    output_item -> variable
+Rule 74    conditional_stmt -> if_stmt
+Rule 75    if_stmt -> IF expression THEN stmt
+Rule 76    if_stmt -> IF expression THEN stmt ELSE stmt
+Rule 77    cicle_stmt -> while_stmt
+Rule 78    cicle_stmt -> for_stmt
+Rule 79    while_stmt -> WHILE expression DO cicle_body
+Rule 80    cicle_body -> block
+Rule 81    cicle_body -> stmt
+Rule 82    for_stmt -> FOR assign_stmt TO simple_exp DO cicle_body
+Rule 83    for_stmt -> FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+Terminals, with rules where they appear
+
+AND                  : 36
+ARRAY                : 17
+ASSIGN               : 32
+BEGIN                : 21
+BOOLEAN_TYPE         : 12
+CHAR_TYPE            : 15
+DIVIDE               : 55
+DIV_INT              : 57
+DO                   : 79 82 83
+DOISPONTOS           : 5 6
+DOT                  : 1
+DOWNTO               : 83
+ELSE                 : 76
+END                  : 21
+EQUAL                : 42
+FALSE                : 65
+FOR                  : 82 83
+GREATEQUALS          : 47
+GREATTHAN            : 46
+ID                   : 1 7 8 19 20
+IF                   : 75 76
+INTEGER_TYPE         : 11
+LENGTH               : 58
+LESSEQUALS           : 45
+LESSTHEN             : 44
+LPAREN               : 58 59 66 67 68 69
+LSQBRACKET           : 17 20
+MINUS                : 51
+MODULO               : 56
+MULT                 : 54
+NEQUAL               : 43
+NOT                  : 38
+NUMBER               : 17 17 61
+OF                   : 17
+OR                   : 34
+PLUS                 : 50
+PROGRAM              : 1
+RANGE                : 17
+READLN               : 66
+REAL_LITERAL         : 62
+REAL_TYPE            : 14
+RPAREN               : 58 59 66 67 68 69
+RSQBRACKET           : 17 20
+SEMI                 : 1 5 6 22 25
+STRING_LITERAL       : 63 72
+STRING_TYPE          : 13
+THEN                 : 75 76
+TO                   : 82
+TRUE                 : 64
+VAR                  : 4
+VIRG                 : 8 71
+WHILE                : 79
+WRITE                : 67
+WRITELN              : 68 69
+error                : 
+
+Nonterminals, with rules where they appear
+
+Programa             : 0
+add_op               : 48
+arrayType            : 16
+assign_stmt          : 26 82 83
+block                : 1 80
+cicle_body           : 79 82 83
+cicle_stmt           : 28
+conditional_stmt     : 27
+datatype             : 5 6
+empty                : 3 23
+expression           : 20 32 58 59 75 76 79
+fator                : 52 53
+for_stmt             : 78
+if_stmt              : 74
+listVar              : 5 6 8
+logical_and_expr     : 34 35 36
+logical_not_expr     : 36 37 38
+logical_or_expr      : 33 34
+mul_op               : 52
+opt_semi             : 21
+opt_variable         : 1
+output_args          : 67 68 71
+output_item          : 70 71
+readLn_stmt          : 29
+relational_expr      : 39
+relational_operator  : 41
+simpleType           : 9 17
+simple_exp           : 40 41 41 48 82 83
+stmt                 : 24 25 75 76 76 81
+stmt_list            : 21 25
+structuredType       : 10
+termo                : 48 49 52
+variable             : 32 60 66 73
+variables            : 2
+vars                 : 4 6
+while_stmt           : 77
+write_stmt           : 30
+writeln_stmt         : 31
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . PROGRAM ID SEMI opt_variable block DOT
+
+    PROGRAM         shift and go to state 2
+
+    Programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> Programa .
+
+
+
+state 2
+
+    (1) Programa -> PROGRAM . ID SEMI opt_variable block DOT
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) Programa -> PROGRAM ID . SEMI opt_variable block DOT
+
+    SEMI            shift and go to state 4
+
+
+state 4
+
+    (1) Programa -> PROGRAM ID SEMI . opt_variable block DOT
+    (2) opt_variable -> . variables
+    (3) opt_variable -> . empty
+    (4) variables -> . VAR vars
+    (18) empty -> .
+
+    VAR             shift and go to state 8
+    BEGIN           reduce using rule 18 (empty -> .)
+
+    opt_variable                   shift and go to state 5
+    variables                      shift and go to state 6
+    empty                          shift and go to state 7
+
+state 5
+
+    (1) Programa -> PROGRAM ID SEMI opt_variable . block DOT
+    (21) block -> . BEGIN stmt_list opt_semi END
+
+    BEGIN           shift and go to state 10
+
+    block                          shift and go to state 9
+
+state 6
+
+    (2) opt_variable -> variables .
+
+    BEGIN           reduce using rule 2 (opt_variable -> variables .)
+
+
+state 7
+
+    (3) opt_variable -> empty .
+
+    BEGIN           reduce using rule 3 (opt_variable -> empty .)
+
+
+state 8
+
+    (4) variables -> VAR . vars
+    (5) vars -> . listVar DOISPONTOS datatype SEMI
+    (6) vars -> . listVar DOISPONTOS datatype SEMI vars
+    (7) listVar -> . ID
+    (8) listVar -> . ID VIRG listVar
+
+    ID              shift and go to state 13
+
+    vars                           shift and go to state 11
+    listVar                        shift and go to state 12
+
+state 9
+
+    (1) Programa -> PROGRAM ID SEMI opt_variable block . DOT
+
+    DOT             shift and go to state 14
+
+
+state 10
+
+    (21) block -> BEGIN . stmt_list opt_semi END
+    (24) stmt_list -> . stmt
+    (25) stmt_list -> . stmt_list SEMI stmt
+    (26) stmt -> . assign_stmt
+    (27) stmt -> . conditional_stmt
+    (28) stmt -> . cicle_stmt
+    (29) stmt -> . readLn_stmt
+    (30) stmt -> . write_stmt
+    (31) stmt -> . writeln_stmt
+    (32) assign_stmt -> . variable ASSIGN expression
+    (74) conditional_stmt -> . if_stmt
+    (77) cicle_stmt -> . while_stmt
+    (78) cicle_stmt -> . for_stmt
+    (66) readLn_stmt -> . READLN LPAREN variable RPAREN
+    (67) write_stmt -> . WRITE LPAREN output_args RPAREN
+    (68) writeln_stmt -> . WRITELN LPAREN output_args RPAREN
+    (69) writeln_stmt -> . WRITELN LPAREN RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+    (75) if_stmt -> . IF expression THEN stmt
+    (76) if_stmt -> . IF expression THEN stmt ELSE stmt
+    (79) while_stmt -> . WHILE expression DO cicle_body
+    (82) for_stmt -> . FOR assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> . FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+    READLN          shift and go to state 27
+    WRITE           shift and go to state 28
+    WRITELN         shift and go to state 29
+    ID              shift and go to state 30
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    FOR             shift and go to state 33
+
+    stmt_list                      shift and go to state 15
+    stmt                           shift and go to state 16
+    assign_stmt                    shift and go to state 17
+    conditional_stmt               shift and go to state 18
+    cicle_stmt                     shift and go to state 19
+    readLn_stmt                    shift and go to state 20
+    write_stmt                     shift and go to state 21
+    writeln_stmt                   shift and go to state 22
+    variable                       shift and go to state 23
+    if_stmt                        shift and go to state 24
+    while_stmt                     shift and go to state 25
+    for_stmt                       shift and go to state 26
+
+state 11
+
+    (4) variables -> VAR vars .
+
+    BEGIN           reduce using rule 4 (variables -> VAR vars .)
+
+
+state 12
+
+    (5) vars -> listVar . DOISPONTOS datatype SEMI
+    (6) vars -> listVar . DOISPONTOS datatype SEMI vars
+
+    DOISPONTOS      shift and go to state 34
+
+
+state 13
+
+    (7) listVar -> ID .
+    (8) listVar -> ID . VIRG listVar
+
+    DOISPONTOS      reduce using rule 7 (listVar -> ID .)
+    VIRG            shift and go to state 35
+
+
+state 14
+
+    (1) Programa -> PROGRAM ID SEMI opt_variable block DOT .
+
+    $end            reduce using rule 1 (Programa -> PROGRAM ID SEMI opt_variable block DOT .)
+
+
+state 15
+
+    (21) block -> BEGIN stmt_list . opt_semi END
+    (25) stmt_list -> stmt_list . SEMI stmt
+    (22) opt_semi -> . SEMI
+    (23) opt_semi -> . empty
+    (18) empty -> .
+
+    SEMI            shift and go to state 37
+    END             reduce using rule 18 (empty -> .)
+
+    opt_semi                       shift and go to state 36
+    empty                          shift and go to state 38
+
+state 16
+
+    (24) stmt_list -> stmt .
+
+    SEMI            reduce using rule 24 (stmt_list -> stmt .)
+    END             reduce using rule 24 (stmt_list -> stmt .)
+
+
+state 17
+
+    (26) stmt -> assign_stmt .
+
+    SEMI            reduce using rule 26 (stmt -> assign_stmt .)
+    END             reduce using rule 26 (stmt -> assign_stmt .)
+    ELSE            reduce using rule 26 (stmt -> assign_stmt .)
+
+
+state 18
+
+    (27) stmt -> conditional_stmt .
+
+    SEMI            reduce using rule 27 (stmt -> conditional_stmt .)
+    END             reduce using rule 27 (stmt -> conditional_stmt .)
+    ELSE            reduce using rule 27 (stmt -> conditional_stmt .)
+
+
+state 19
+
+    (28) stmt -> cicle_stmt .
+
+    SEMI            reduce using rule 28 (stmt -> cicle_stmt .)
+    END             reduce using rule 28 (stmt -> cicle_stmt .)
+    ELSE            reduce using rule 28 (stmt -> cicle_stmt .)
+
+
+state 20
+
+    (29) stmt -> readLn_stmt .
+
+    SEMI            reduce using rule 29 (stmt -> readLn_stmt .)
+    END             reduce using rule 29 (stmt -> readLn_stmt .)
+    ELSE            reduce using rule 29 (stmt -> readLn_stmt .)
+
+
+state 21
+
+    (30) stmt -> write_stmt .
+
+    SEMI            reduce using rule 30 (stmt -> write_stmt .)
+    END             reduce using rule 30 (stmt -> write_stmt .)
+    ELSE            reduce using rule 30 (stmt -> write_stmt .)
+
+
+state 22
+
+    (31) stmt -> writeln_stmt .
+
+    SEMI            reduce using rule 31 (stmt -> writeln_stmt .)
+    END             reduce using rule 31 (stmt -> writeln_stmt .)
+    ELSE            reduce using rule 31 (stmt -> writeln_stmt .)
+
+
+state 23
+
+    (32) assign_stmt -> variable . ASSIGN expression
+
+    ASSIGN          shift and go to state 39
+
+
+state 24
+
+    (74) conditional_stmt -> if_stmt .
+
+    SEMI            reduce using rule 74 (conditional_stmt -> if_stmt .)
+    END             reduce using rule 74 (conditional_stmt -> if_stmt .)
+    ELSE            reduce using rule 74 (conditional_stmt -> if_stmt .)
+
+
+state 25
+
+    (77) cicle_stmt -> while_stmt .
+
+    SEMI            reduce using rule 77 (cicle_stmt -> while_stmt .)
+    END             reduce using rule 77 (cicle_stmt -> while_stmt .)
+    ELSE            reduce using rule 77 (cicle_stmt -> while_stmt .)
+
+
+state 26
+
+    (78) cicle_stmt -> for_stmt .
+
+    SEMI            reduce using rule 78 (cicle_stmt -> for_stmt .)
+    END             reduce using rule 78 (cicle_stmt -> for_stmt .)
+    ELSE            reduce using rule 78 (cicle_stmt -> for_stmt .)
+
+
+state 27
+
+    (66) readLn_stmt -> READLN . LPAREN variable RPAREN
+
+    LPAREN          shift and go to state 40
+
+
+state 28
+
+    (67) write_stmt -> WRITE . LPAREN output_args RPAREN
+
+    LPAREN          shift and go to state 41
+
+
+state 29
+
+    (68) writeln_stmt -> WRITELN . LPAREN output_args RPAREN
+    (69) writeln_stmt -> WRITELN . LPAREN RPAREN
+
+    LPAREN          shift and go to state 42
+
+
+state 30
+
+    (19) variable -> ID .
+    (20) variable -> ID . LSQBRACKET expression RSQBRACKET
+
+    ASSIGN          reduce using rule 19 (variable -> ID .)
+    MULT            reduce using rule 19 (variable -> ID .)
+    DIVIDE          reduce using rule 19 (variable -> ID .)
+    MODULO          reduce using rule 19 (variable -> ID .)
+    DIV_INT         reduce using rule 19 (variable -> ID .)
+    EQUAL           reduce using rule 19 (variable -> ID .)
+    NEQUAL          reduce using rule 19 (variable -> ID .)
+    LESSTHEN        reduce using rule 19 (variable -> ID .)
+    LESSEQUALS      reduce using rule 19 (variable -> ID .)
+    GREATTHAN       reduce using rule 19 (variable -> ID .)
+    GREATEQUALS     reduce using rule 19 (variable -> ID .)
+    PLUS            reduce using rule 19 (variable -> ID .)
+    MINUS           reduce using rule 19 (variable -> ID .)
+    AND             reduce using rule 19 (variable -> ID .)
+    OR              reduce using rule 19 (variable -> ID .)
+    THEN            reduce using rule 19 (variable -> ID .)
+    DO              reduce using rule 19 (variable -> ID .)
+    SEMI            reduce using rule 19 (variable -> ID .)
+    END             reduce using rule 19 (variable -> ID .)
+    TO              reduce using rule 19 (variable -> ID .)
+    DOWNTO          reduce using rule 19 (variable -> ID .)
+    ELSE            reduce using rule 19 (variable -> ID .)
+    RPAREN          reduce using rule 19 (variable -> ID .)
+    VIRG            reduce using rule 19 (variable -> ID .)
+    RSQBRACKET      reduce using rule 19 (variable -> ID .)
+    LSQBRACKET      shift and go to state 43
+
+
+state 31
+
+    (75) if_stmt -> IF . expression THEN stmt
+    (76) if_stmt -> IF . expression THEN stmt ELSE stmt
+    (33) expression -> . logical_or_expr
+    (34) logical_or_expr -> . logical_or_expr OR logical_and_expr
+    (35) logical_or_expr -> . logical_and_expr
+    (36) logical_and_expr -> . logical_and_expr AND logical_not_expr
+    (37) logical_and_expr -> . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    expression                     shift and go to state 44
+    logical_or_expr                shift and go to state 45
+    logical_and_expr               shift and go to state 46
+    logical_not_expr               shift and go to state 47
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 32
+
+    (79) while_stmt -> WHILE . expression DO cicle_body
+    (33) expression -> . logical_or_expr
+    (34) logical_or_expr -> . logical_or_expr OR logical_and_expr
+    (35) logical_or_expr -> . logical_and_expr
+    (36) logical_and_expr -> . logical_and_expr AND logical_not_expr
+    (37) logical_and_expr -> . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    expression                     shift and go to state 61
+    logical_or_expr                shift and go to state 45
+    logical_and_expr               shift and go to state 46
+    logical_not_expr               shift and go to state 47
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 33
+
+    (82) for_stmt -> FOR . assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> FOR . assign_stmt DOWNTO simple_exp DO cicle_body
+    (32) assign_stmt -> . variable ASSIGN expression
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    ID              shift and go to state 30
+
+    assign_stmt                    shift and go to state 62
+    variable                       shift and go to state 23
+
+state 34
+
+    (5) vars -> listVar DOISPONTOS . datatype SEMI
+    (6) vars -> listVar DOISPONTOS . datatype SEMI vars
+    (9) datatype -> . simpleType
+    (10) datatype -> . structuredType
+    (11) simpleType -> . INTEGER_TYPE
+    (12) simpleType -> . BOOLEAN_TYPE
+    (13) simpleType -> . STRING_TYPE
+    (14) simpleType -> . REAL_TYPE
+    (15) simpleType -> . CHAR_TYPE
+    (16) structuredType -> . arrayType
+    (17) arrayType -> . ARRAY LSQBRACKET NUMBER RANGE NUMBER RSQBRACKET OF simpleType
+
+    INTEGER_TYPE    shift and go to state 66
+    BOOLEAN_TYPE    shift and go to state 67
+    STRING_TYPE     shift and go to state 68
+    REAL_TYPE       shift and go to state 69
+    CHAR_TYPE       shift and go to state 70
+    ARRAY           shift and go to state 72
+
+    datatype                       shift and go to state 63
+    simpleType                     shift and go to state 64
+    structuredType                 shift and go to state 65
+    arrayType                      shift and go to state 71
+
+state 35
+
+    (8) listVar -> ID VIRG . listVar
+    (7) listVar -> . ID
+    (8) listVar -> . ID VIRG listVar
+
+    ID              shift and go to state 13
+
+    listVar                        shift and go to state 73
+
+state 36
+
+    (21) block -> BEGIN stmt_list opt_semi . END
+
+    END             shift and go to state 74
+
+
+state 37
+
+    (25) stmt_list -> stmt_list SEMI . stmt
+    (22) opt_semi -> SEMI .
+    (26) stmt -> . assign_stmt
+    (27) stmt -> . conditional_stmt
+    (28) stmt -> . cicle_stmt
+    (29) stmt -> . readLn_stmt
+    (30) stmt -> . write_stmt
+    (31) stmt -> . writeln_stmt
+    (32) assign_stmt -> . variable ASSIGN expression
+    (74) conditional_stmt -> . if_stmt
+    (77) cicle_stmt -> . while_stmt
+    (78) cicle_stmt -> . for_stmt
+    (66) readLn_stmt -> . READLN LPAREN variable RPAREN
+    (67) write_stmt -> . WRITE LPAREN output_args RPAREN
+    (68) writeln_stmt -> . WRITELN LPAREN output_args RPAREN
+    (69) writeln_stmt -> . WRITELN LPAREN RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+    (75) if_stmt -> . IF expression THEN stmt
+    (76) if_stmt -> . IF expression THEN stmt ELSE stmt
+    (79) while_stmt -> . WHILE expression DO cicle_body
+    (82) for_stmt -> . FOR assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> . FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+    END             reduce using rule 22 (opt_semi -> SEMI .)
+    READLN          shift and go to state 27
+    WRITE           shift and go to state 28
+    WRITELN         shift and go to state 29
+    ID              shift and go to state 30
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    FOR             shift and go to state 33
+
+    stmt                           shift and go to state 75
+    assign_stmt                    shift and go to state 17
+    conditional_stmt               shift and go to state 18
+    cicle_stmt                     shift and go to state 19
+    readLn_stmt                    shift and go to state 20
+    write_stmt                     shift and go to state 21
+    writeln_stmt                   shift and go to state 22
+    variable                       shift and go to state 23
+    if_stmt                        shift and go to state 24
+    while_stmt                     shift and go to state 25
+    for_stmt                       shift and go to state 26
+
+state 38
+
+    (23) opt_semi -> empty .
+
+    END             reduce using rule 23 (opt_semi -> empty .)
+
+
+state 39
+
+    (32) assign_stmt -> variable ASSIGN . expression
+    (33) expression -> . logical_or_expr
+    (34) logical_or_expr -> . logical_or_expr OR logical_and_expr
+    (35) logical_or_expr -> . logical_and_expr
+    (36) logical_and_expr -> . logical_and_expr AND logical_not_expr
+    (37) logical_and_expr -> . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    variable                       shift and go to state 55
+    expression                     shift and go to state 76
+    logical_or_expr                shift and go to state 45
+    logical_and_expr               shift and go to state 46
+    logical_not_expr               shift and go to state 47
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+
+state 40
+
+    (66) readLn_stmt -> READLN LPAREN . variable RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    ID              shift and go to state 30
+
+    variable                       shift and go to state 77
+
+state 41
+
+    (67) write_stmt -> WRITE LPAREN . output_args RPAREN
+    (70) output_args -> . output_item
+    (71) output_args -> . output_item VIRG output_args
+    (72) output_item -> . STRING_LITERAL
+    (73) output_item -> . variable
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    STRING_LITERAL  shift and go to state 80
+    ID              shift and go to state 30
+
+    output_args                    shift and go to state 78
+    output_item                    shift and go to state 79
+    variable                       shift and go to state 81
+
+state 42
+
+    (68) writeln_stmt -> WRITELN LPAREN . output_args RPAREN
+    (69) writeln_stmt -> WRITELN LPAREN . RPAREN
+    (70) output_args -> . output_item
+    (71) output_args -> . output_item VIRG output_args
+    (72) output_item -> . STRING_LITERAL
+    (73) output_item -> . variable
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    RPAREN          shift and go to state 83
+    STRING_LITERAL  shift and go to state 80
+    ID              shift and go to state 30
+
+    output_args                    shift and go to state 82
+    output_item                    shift and go to state 79
+    variable                       shift and go to state 81
+
+state 43
+
+    (20) variable -> ID LSQBRACKET . expression RSQBRACKET
+    (33) expression -> . logical_or_expr
+    (34) logical_or_expr -> . logical_or_expr OR logical_and_expr
+    (35) logical_or_expr -> . logical_and_expr
+    (36) logical_and_expr -> . logical_and_expr AND logical_not_expr
+    (37) logical_and_expr -> . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    expression                     shift and go to state 84
+    logical_or_expr                shift and go to state 45
+    logical_and_expr               shift and go to state 46
+    logical_not_expr               shift and go to state 47
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 44
+
+    (75) if_stmt -> IF expression . THEN stmt
+    (76) if_stmt -> IF expression . THEN stmt ELSE stmt
+
+    THEN            shift and go to state 85
+
+
+state 45
+
+    (33) expression -> logical_or_expr .
+    (34) logical_or_expr -> logical_or_expr . OR logical_and_expr
+
+    THEN            reduce using rule 33 (expression -> logical_or_expr .)
+    DO              reduce using rule 33 (expression -> logical_or_expr .)
+    SEMI            reduce using rule 33 (expression -> logical_or_expr .)
+    END             reduce using rule 33 (expression -> logical_or_expr .)
+    TO              reduce using rule 33 (expression -> logical_or_expr .)
+    DOWNTO          reduce using rule 33 (expression -> logical_or_expr .)
+    ELSE            reduce using rule 33 (expression -> logical_or_expr .)
+    RSQBRACKET      reduce using rule 33 (expression -> logical_or_expr .)
+    RPAREN          reduce using rule 33 (expression -> logical_or_expr .)
+    OR              shift and go to state 86
+
+
+state 46
+
+    (35) logical_or_expr -> logical_and_expr .
+    (36) logical_and_expr -> logical_and_expr . AND logical_not_expr
+
+    OR              reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    THEN            reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    DO              reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    SEMI            reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    END             reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    TO              reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    DOWNTO          reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    ELSE            reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    RSQBRACKET      reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    RPAREN          reduce using rule 35 (logical_or_expr -> logical_and_expr .)
+    AND             shift and go to state 87
+
+
+state 47
+
+    (37) logical_and_expr -> logical_not_expr .
+
+    AND             reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    OR              reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    THEN            reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    DO              reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    SEMI            reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    END             reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    TO              reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    DOWNTO          reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    ELSE            reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    RSQBRACKET      reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+    RPAREN          reduce using rule 37 (logical_and_expr -> logical_not_expr .)
+
+
+state 48
+
+    (38) logical_not_expr -> NOT . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    logical_not_expr               shift and go to state 88
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 49
+
+    (39) logical_not_expr -> relational_expr .
+
+    AND             reduce using rule 39 (logical_not_expr -> relational_expr .)
+    OR              reduce using rule 39 (logical_not_expr -> relational_expr .)
+    THEN            reduce using rule 39 (logical_not_expr -> relational_expr .)
+    DO              reduce using rule 39 (logical_not_expr -> relational_expr .)
+    SEMI            reduce using rule 39 (logical_not_expr -> relational_expr .)
+    END             reduce using rule 39 (logical_not_expr -> relational_expr .)
+    TO              reduce using rule 39 (logical_not_expr -> relational_expr .)
+    DOWNTO          reduce using rule 39 (logical_not_expr -> relational_expr .)
+    ELSE            reduce using rule 39 (logical_not_expr -> relational_expr .)
+    RSQBRACKET      reduce using rule 39 (logical_not_expr -> relational_expr .)
+    RPAREN          reduce using rule 39 (logical_not_expr -> relational_expr .)
+
+
+state 50
+
+    (40) relational_expr -> simple_exp .
+    (41) relational_expr -> simple_exp . relational_operator simple_exp
+    (48) simple_exp -> simple_exp . add_op termo
+    (42) relational_operator -> . EQUAL
+    (43) relational_operator -> . NEQUAL
+    (44) relational_operator -> . LESSTHEN
+    (45) relational_operator -> . LESSEQUALS
+    (46) relational_operator -> . GREATTHAN
+    (47) relational_operator -> . GREATEQUALS
+    (50) add_op -> . PLUS
+    (51) add_op -> . MINUS
+
+    AND             reduce using rule 40 (relational_expr -> simple_exp .)
+    OR              reduce using rule 40 (relational_expr -> simple_exp .)
+    THEN            reduce using rule 40 (relational_expr -> simple_exp .)
+    DO              reduce using rule 40 (relational_expr -> simple_exp .)
+    SEMI            reduce using rule 40 (relational_expr -> simple_exp .)
+    END             reduce using rule 40 (relational_expr -> simple_exp .)
+    TO              reduce using rule 40 (relational_expr -> simple_exp .)
+    DOWNTO          reduce using rule 40 (relational_expr -> simple_exp .)
+    ELSE            reduce using rule 40 (relational_expr -> simple_exp .)
+    RSQBRACKET      reduce using rule 40 (relational_expr -> simple_exp .)
+    RPAREN          reduce using rule 40 (relational_expr -> simple_exp .)
+    EQUAL           shift and go to state 91
+    NEQUAL          shift and go to state 92
+    LESSTHEN        shift and go to state 93
+    LESSEQUALS      shift and go to state 94
+    GREATTHAN       shift and go to state 95
+    GREATEQUALS     shift and go to state 96
+    PLUS            shift and go to state 97
+    MINUS           shift and go to state 98
+
+    relational_operator            shift and go to state 89
+    add_op                         shift and go to state 90
+
+state 51
+
+    (49) simple_exp -> termo .
+    (52) termo -> termo . mul_op fator
+    (54) mul_op -> . MULT
+    (55) mul_op -> . DIVIDE
+    (56) mul_op -> . MODULO
+    (57) mul_op -> . DIV_INT
+
+    EQUAL           reduce using rule 49 (simple_exp -> termo .)
+    NEQUAL          reduce using rule 49 (simple_exp -> termo .)
+    LESSTHEN        reduce using rule 49 (simple_exp -> termo .)
+    LESSEQUALS      reduce using rule 49 (simple_exp -> termo .)
+    GREATTHAN       reduce using rule 49 (simple_exp -> termo .)
+    GREATEQUALS     reduce using rule 49 (simple_exp -> termo .)
+    PLUS            reduce using rule 49 (simple_exp -> termo .)
+    MINUS           reduce using rule 49 (simple_exp -> termo .)
+    AND             reduce using rule 49 (simple_exp -> termo .)
+    OR              reduce using rule 49 (simple_exp -> termo .)
+    THEN            reduce using rule 49 (simple_exp -> termo .)
+    DO              reduce using rule 49 (simple_exp -> termo .)
+    SEMI            reduce using rule 49 (simple_exp -> termo .)
+    END             reduce using rule 49 (simple_exp -> termo .)
+    TO              reduce using rule 49 (simple_exp -> termo .)
+    DOWNTO          reduce using rule 49 (simple_exp -> termo .)
+    ELSE            reduce using rule 49 (simple_exp -> termo .)
+    RSQBRACKET      reduce using rule 49 (simple_exp -> termo .)
+    RPAREN          reduce using rule 49 (simple_exp -> termo .)
+    MULT            shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULO          shift and go to state 102
+    DIV_INT         shift and go to state 103
+
+    mul_op                         shift and go to state 99
+
+state 52
+
+    (53) termo -> fator .
+
+    MULT            reduce using rule 53 (termo -> fator .)
+    DIVIDE          reduce using rule 53 (termo -> fator .)
+    MODULO          reduce using rule 53 (termo -> fator .)
+    DIV_INT         reduce using rule 53 (termo -> fator .)
+    EQUAL           reduce using rule 53 (termo -> fator .)
+    NEQUAL          reduce using rule 53 (termo -> fator .)
+    LESSTHEN        reduce using rule 53 (termo -> fator .)
+    LESSEQUALS      reduce using rule 53 (termo -> fator .)
+    GREATTHAN       reduce using rule 53 (termo -> fator .)
+    GREATEQUALS     reduce using rule 53 (termo -> fator .)
+    PLUS            reduce using rule 53 (termo -> fator .)
+    MINUS           reduce using rule 53 (termo -> fator .)
+    AND             reduce using rule 53 (termo -> fator .)
+    OR              reduce using rule 53 (termo -> fator .)
+    THEN            reduce using rule 53 (termo -> fator .)
+    DO              reduce using rule 53 (termo -> fator .)
+    SEMI            reduce using rule 53 (termo -> fator .)
+    END             reduce using rule 53 (termo -> fator .)
+    TO              reduce using rule 53 (termo -> fator .)
+    DOWNTO          reduce using rule 53 (termo -> fator .)
+    ELSE            reduce using rule 53 (termo -> fator .)
+    RSQBRACKET      reduce using rule 53 (termo -> fator .)
+    RPAREN          reduce using rule 53 (termo -> fator .)
+
+
+state 53
+
+    (58) fator -> LENGTH . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 104
+
+
+state 54
+
+    (59) fator -> LPAREN . expression RPAREN
+    (33) expression -> . logical_or_expr
+    (34) logical_or_expr -> . logical_or_expr OR logical_and_expr
+    (35) logical_or_expr -> . logical_and_expr
+    (36) logical_and_expr -> . logical_and_expr AND logical_not_expr
+    (37) logical_and_expr -> . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    expression                     shift and go to state 105
+    logical_or_expr                shift and go to state 45
+    logical_and_expr               shift and go to state 46
+    logical_not_expr               shift and go to state 47
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 55
+
+    (60) fator -> variable .
+
+    MULT            reduce using rule 60 (fator -> variable .)
+    DIVIDE          reduce using rule 60 (fator -> variable .)
+    MODULO          reduce using rule 60 (fator -> variable .)
+    DIV_INT         reduce using rule 60 (fator -> variable .)
+    EQUAL           reduce using rule 60 (fator -> variable .)
+    NEQUAL          reduce using rule 60 (fator -> variable .)
+    LESSTHEN        reduce using rule 60 (fator -> variable .)
+    LESSEQUALS      reduce using rule 60 (fator -> variable .)
+    GREATTHAN       reduce using rule 60 (fator -> variable .)
+    GREATEQUALS     reduce using rule 60 (fator -> variable .)
+    PLUS            reduce using rule 60 (fator -> variable .)
+    MINUS           reduce using rule 60 (fator -> variable .)
+    AND             reduce using rule 60 (fator -> variable .)
+    OR              reduce using rule 60 (fator -> variable .)
+    THEN            reduce using rule 60 (fator -> variable .)
+    DO              reduce using rule 60 (fator -> variable .)
+    SEMI            reduce using rule 60 (fator -> variable .)
+    END             reduce using rule 60 (fator -> variable .)
+    TO              reduce using rule 60 (fator -> variable .)
+    DOWNTO          reduce using rule 60 (fator -> variable .)
+    ELSE            reduce using rule 60 (fator -> variable .)
+    RSQBRACKET      reduce using rule 60 (fator -> variable .)
+    RPAREN          reduce using rule 60 (fator -> variable .)
+
+
+state 56
+
+    (61) fator -> NUMBER .
+
+    MULT            reduce using rule 61 (fator -> NUMBER .)
+    DIVIDE          reduce using rule 61 (fator -> NUMBER .)
+    MODULO          reduce using rule 61 (fator -> NUMBER .)
+    DIV_INT         reduce using rule 61 (fator -> NUMBER .)
+    EQUAL           reduce using rule 61 (fator -> NUMBER .)
+    NEQUAL          reduce using rule 61 (fator -> NUMBER .)
+    LESSTHEN        reduce using rule 61 (fator -> NUMBER .)
+    LESSEQUALS      reduce using rule 61 (fator -> NUMBER .)
+    GREATTHAN       reduce using rule 61 (fator -> NUMBER .)
+    GREATEQUALS     reduce using rule 61 (fator -> NUMBER .)
+    PLUS            reduce using rule 61 (fator -> NUMBER .)
+    MINUS           reduce using rule 61 (fator -> NUMBER .)
+    AND             reduce using rule 61 (fator -> NUMBER .)
+    OR              reduce using rule 61 (fator -> NUMBER .)
+    THEN            reduce using rule 61 (fator -> NUMBER .)
+    DO              reduce using rule 61 (fator -> NUMBER .)
+    SEMI            reduce using rule 61 (fator -> NUMBER .)
+    END             reduce using rule 61 (fator -> NUMBER .)
+    TO              reduce using rule 61 (fator -> NUMBER .)
+    DOWNTO          reduce using rule 61 (fator -> NUMBER .)
+    ELSE            reduce using rule 61 (fator -> NUMBER .)
+    RSQBRACKET      reduce using rule 61 (fator -> NUMBER .)
+    RPAREN          reduce using rule 61 (fator -> NUMBER .)
+
+
+state 57
+
+    (62) fator -> REAL_LITERAL .
+
+    MULT            reduce using rule 62 (fator -> REAL_LITERAL .)
+    DIVIDE          reduce using rule 62 (fator -> REAL_LITERAL .)
+    MODULO          reduce using rule 62 (fator -> REAL_LITERAL .)
+    DIV_INT         reduce using rule 62 (fator -> REAL_LITERAL .)
+    EQUAL           reduce using rule 62 (fator -> REAL_LITERAL .)
+    NEQUAL          reduce using rule 62 (fator -> REAL_LITERAL .)
+    LESSTHEN        reduce using rule 62 (fator -> REAL_LITERAL .)
+    LESSEQUALS      reduce using rule 62 (fator -> REAL_LITERAL .)
+    GREATTHAN       reduce using rule 62 (fator -> REAL_LITERAL .)
+    GREATEQUALS     reduce using rule 62 (fator -> REAL_LITERAL .)
+    PLUS            reduce using rule 62 (fator -> REAL_LITERAL .)
+    MINUS           reduce using rule 62 (fator -> REAL_LITERAL .)
+    AND             reduce using rule 62 (fator -> REAL_LITERAL .)
+    OR              reduce using rule 62 (fator -> REAL_LITERAL .)
+    THEN            reduce using rule 62 (fator -> REAL_LITERAL .)
+    DO              reduce using rule 62 (fator -> REAL_LITERAL .)
+    SEMI            reduce using rule 62 (fator -> REAL_LITERAL .)
+    END             reduce using rule 62 (fator -> REAL_LITERAL .)
+    TO              reduce using rule 62 (fator -> REAL_LITERAL .)
+    DOWNTO          reduce using rule 62 (fator -> REAL_LITERAL .)
+    ELSE            reduce using rule 62 (fator -> REAL_LITERAL .)
+    RSQBRACKET      reduce using rule 62 (fator -> REAL_LITERAL .)
+    RPAREN          reduce using rule 62 (fator -> REAL_LITERAL .)
+
+
+state 58
+
+    (63) fator -> STRING_LITERAL .
+
+    MULT            reduce using rule 63 (fator -> STRING_LITERAL .)
+    DIVIDE          reduce using rule 63 (fator -> STRING_LITERAL .)
+    MODULO          reduce using rule 63 (fator -> STRING_LITERAL .)
+    DIV_INT         reduce using rule 63 (fator -> STRING_LITERAL .)
+    EQUAL           reduce using rule 63 (fator -> STRING_LITERAL .)
+    NEQUAL          reduce using rule 63 (fator -> STRING_LITERAL .)
+    LESSTHEN        reduce using rule 63 (fator -> STRING_LITERAL .)
+    LESSEQUALS      reduce using rule 63 (fator -> STRING_LITERAL .)
+    GREATTHAN       reduce using rule 63 (fator -> STRING_LITERAL .)
+    GREATEQUALS     reduce using rule 63 (fator -> STRING_LITERAL .)
+    PLUS            reduce using rule 63 (fator -> STRING_LITERAL .)
+    MINUS           reduce using rule 63 (fator -> STRING_LITERAL .)
+    AND             reduce using rule 63 (fator -> STRING_LITERAL .)
+    OR              reduce using rule 63 (fator -> STRING_LITERAL .)
+    THEN            reduce using rule 63 (fator -> STRING_LITERAL .)
+    DO              reduce using rule 63 (fator -> STRING_LITERAL .)
+    SEMI            reduce using rule 63 (fator -> STRING_LITERAL .)
+    END             reduce using rule 63 (fator -> STRING_LITERAL .)
+    TO              reduce using rule 63 (fator -> STRING_LITERAL .)
+    DOWNTO          reduce using rule 63 (fator -> STRING_LITERAL .)
+    ELSE            reduce using rule 63 (fator -> STRING_LITERAL .)
+    RSQBRACKET      reduce using rule 63 (fator -> STRING_LITERAL .)
+    RPAREN          reduce using rule 63 (fator -> STRING_LITERAL .)
+
+
+state 59
+
+    (64) fator -> TRUE .
+
+    MULT            reduce using rule 64 (fator -> TRUE .)
+    DIVIDE          reduce using rule 64 (fator -> TRUE .)
+    MODULO          reduce using rule 64 (fator -> TRUE .)
+    DIV_INT         reduce using rule 64 (fator -> TRUE .)
+    EQUAL           reduce using rule 64 (fator -> TRUE .)
+    NEQUAL          reduce using rule 64 (fator -> TRUE .)
+    LESSTHEN        reduce using rule 64 (fator -> TRUE .)
+    LESSEQUALS      reduce using rule 64 (fator -> TRUE .)
+    GREATTHAN       reduce using rule 64 (fator -> TRUE .)
+    GREATEQUALS     reduce using rule 64 (fator -> TRUE .)
+    PLUS            reduce using rule 64 (fator -> TRUE .)
+    MINUS           reduce using rule 64 (fator -> TRUE .)
+    AND             reduce using rule 64 (fator -> TRUE .)
+    OR              reduce using rule 64 (fator -> TRUE .)
+    THEN            reduce using rule 64 (fator -> TRUE .)
+    DO              reduce using rule 64 (fator -> TRUE .)
+    SEMI            reduce using rule 64 (fator -> TRUE .)
+    END             reduce using rule 64 (fator -> TRUE .)
+    TO              reduce using rule 64 (fator -> TRUE .)
+    DOWNTO          reduce using rule 64 (fator -> TRUE .)
+    ELSE            reduce using rule 64 (fator -> TRUE .)
+    RSQBRACKET      reduce using rule 64 (fator -> TRUE .)
+    RPAREN          reduce using rule 64 (fator -> TRUE .)
+
+
+state 60
+
+    (65) fator -> FALSE .
+
+    MULT            reduce using rule 65 (fator -> FALSE .)
+    DIVIDE          reduce using rule 65 (fator -> FALSE .)
+    MODULO          reduce using rule 65 (fator -> FALSE .)
+    DIV_INT         reduce using rule 65 (fator -> FALSE .)
+    EQUAL           reduce using rule 65 (fator -> FALSE .)
+    NEQUAL          reduce using rule 65 (fator -> FALSE .)
+    LESSTHEN        reduce using rule 65 (fator -> FALSE .)
+    LESSEQUALS      reduce using rule 65 (fator -> FALSE .)
+    GREATTHAN       reduce using rule 65 (fator -> FALSE .)
+    GREATEQUALS     reduce using rule 65 (fator -> FALSE .)
+    PLUS            reduce using rule 65 (fator -> FALSE .)
+    MINUS           reduce using rule 65 (fator -> FALSE .)
+    AND             reduce using rule 65 (fator -> FALSE .)
+    OR              reduce using rule 65 (fator -> FALSE .)
+    THEN            reduce using rule 65 (fator -> FALSE .)
+    DO              reduce using rule 65 (fator -> FALSE .)
+    SEMI            reduce using rule 65 (fator -> FALSE .)
+    END             reduce using rule 65 (fator -> FALSE .)
+    TO              reduce using rule 65 (fator -> FALSE .)
+    DOWNTO          reduce using rule 65 (fator -> FALSE .)
+    ELSE            reduce using rule 65 (fator -> FALSE .)
+    RSQBRACKET      reduce using rule 65 (fator -> FALSE .)
+    RPAREN          reduce using rule 65 (fator -> FALSE .)
+
+
+state 61
+
+    (79) while_stmt -> WHILE expression . DO cicle_body
+
+    DO              shift and go to state 106
+
+
+state 62
+
+    (82) for_stmt -> FOR assign_stmt . TO simple_exp DO cicle_body
+    (83) for_stmt -> FOR assign_stmt . DOWNTO simple_exp DO cicle_body
+
+    TO              shift and go to state 107
+    DOWNTO          shift and go to state 108
+
+
+state 63
+
+    (5) vars -> listVar DOISPONTOS datatype . SEMI
+    (6) vars -> listVar DOISPONTOS datatype . SEMI vars
+
+    SEMI            shift and go to state 109
+
+
+state 64
+
+    (9) datatype -> simpleType .
+
+    SEMI            reduce using rule 9 (datatype -> simpleType .)
+
+
+state 65
+
+    (10) datatype -> structuredType .
+
+    SEMI            reduce using rule 10 (datatype -> structuredType .)
+
+
+state 66
+
+    (11) simpleType -> INTEGER_TYPE .
+
+    SEMI            reduce using rule 11 (simpleType -> INTEGER_TYPE .)
+
+
+state 67
+
+    (12) simpleType -> BOOLEAN_TYPE .
+
+    SEMI            reduce using rule 12 (simpleType -> BOOLEAN_TYPE .)
+
+
+state 68
+
+    (13) simpleType -> STRING_TYPE .
+
+    SEMI            reduce using rule 13 (simpleType -> STRING_TYPE .)
+
+
+state 69
+
+    (14) simpleType -> REAL_TYPE .
+
+    SEMI            reduce using rule 14 (simpleType -> REAL_TYPE .)
+
+
+state 70
+
+    (15) simpleType -> CHAR_TYPE .
+
+    SEMI            reduce using rule 15 (simpleType -> CHAR_TYPE .)
+
+
+state 71
+
+    (16) structuredType -> arrayType .
+
+    SEMI            reduce using rule 16 (structuredType -> arrayType .)
+
+
+state 72
+
+    (17) arrayType -> ARRAY . LSQBRACKET NUMBER RANGE NUMBER RSQBRACKET OF simpleType
+
+    LSQBRACKET      shift and go to state 110
+
+
+state 73
+
+    (8) listVar -> ID VIRG listVar .
+
+    DOISPONTOS      reduce using rule 8 (listVar -> ID VIRG listVar .)
+
+
+state 74
+
+    (21) block -> BEGIN stmt_list opt_semi END .
+
+    DOT             reduce using rule 21 (block -> BEGIN stmt_list opt_semi END .)
+    ELSE            reduce using rule 21 (block -> BEGIN stmt_list opt_semi END .)
+    SEMI            reduce using rule 21 (block -> BEGIN stmt_list opt_semi END .)
+    END             reduce using rule 21 (block -> BEGIN stmt_list opt_semi END .)
+
+
+state 75
+
+    (25) stmt_list -> stmt_list SEMI stmt .
+
+    SEMI            reduce using rule 25 (stmt_list -> stmt_list SEMI stmt .)
+    END             reduce using rule 25 (stmt_list -> stmt_list SEMI stmt .)
+
+
+state 76
+
+    (32) assign_stmt -> variable ASSIGN expression .
+
+    SEMI            reduce using rule 32 (assign_stmt -> variable ASSIGN expression .)
+    END             reduce using rule 32 (assign_stmt -> variable ASSIGN expression .)
+    TO              reduce using rule 32 (assign_stmt -> variable ASSIGN expression .)
+    DOWNTO          reduce using rule 32 (assign_stmt -> variable ASSIGN expression .)
+    ELSE            reduce using rule 32 (assign_stmt -> variable ASSIGN expression .)
+
+
+state 77
+
+    (66) readLn_stmt -> READLN LPAREN variable . RPAREN
+
+    RPAREN          shift and go to state 111
+
+
+state 78
+
+    (67) write_stmt -> WRITE LPAREN output_args . RPAREN
+
+    RPAREN          shift and go to state 112
+
+
+state 79
+
+    (70) output_args -> output_item .
+    (71) output_args -> output_item . VIRG output_args
+
+    RPAREN          reduce using rule 70 (output_args -> output_item .)
+    VIRG            shift and go to state 113
+
+
+state 80
+
+    (72) output_item -> STRING_LITERAL .
+
+    VIRG            reduce using rule 72 (output_item -> STRING_LITERAL .)
+    RPAREN          reduce using rule 72 (output_item -> STRING_LITERAL .)
+
+
+state 81
+
+    (73) output_item -> variable .
+
+    VIRG            reduce using rule 73 (output_item -> variable .)
+    RPAREN          reduce using rule 73 (output_item -> variable .)
+
+
+state 82
+
+    (68) writeln_stmt -> WRITELN LPAREN output_args . RPAREN
+
+    RPAREN          shift and go to state 114
+
+
+state 83
+
+    (69) writeln_stmt -> WRITELN LPAREN RPAREN .
+
+    SEMI            reduce using rule 69 (writeln_stmt -> WRITELN LPAREN RPAREN .)
+    END             reduce using rule 69 (writeln_stmt -> WRITELN LPAREN RPAREN .)
+    ELSE            reduce using rule 69 (writeln_stmt -> WRITELN LPAREN RPAREN .)
+
+
+state 84
+
+    (20) variable -> ID LSQBRACKET expression . RSQBRACKET
+
+    RSQBRACKET      shift and go to state 115
+
+
+state 85
+
+    (75) if_stmt -> IF expression THEN . stmt
+    (76) if_stmt -> IF expression THEN . stmt ELSE stmt
+    (26) stmt -> . assign_stmt
+    (27) stmt -> . conditional_stmt
+    (28) stmt -> . cicle_stmt
+    (29) stmt -> . readLn_stmt
+    (30) stmt -> . write_stmt
+    (31) stmt -> . writeln_stmt
+    (32) assign_stmt -> . variable ASSIGN expression
+    (74) conditional_stmt -> . if_stmt
+    (77) cicle_stmt -> . while_stmt
+    (78) cicle_stmt -> . for_stmt
+    (66) readLn_stmt -> . READLN LPAREN variable RPAREN
+    (67) write_stmt -> . WRITE LPAREN output_args RPAREN
+    (68) writeln_stmt -> . WRITELN LPAREN output_args RPAREN
+    (69) writeln_stmt -> . WRITELN LPAREN RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+    (75) if_stmt -> . IF expression THEN stmt
+    (76) if_stmt -> . IF expression THEN stmt ELSE stmt
+    (79) while_stmt -> . WHILE expression DO cicle_body
+    (82) for_stmt -> . FOR assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> . FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+    READLN          shift and go to state 27
+    WRITE           shift and go to state 28
+    WRITELN         shift and go to state 29
+    ID              shift and go to state 30
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    FOR             shift and go to state 33
+
+    stmt                           shift and go to state 116
+    assign_stmt                    shift and go to state 17
+    conditional_stmt               shift and go to state 18
+    cicle_stmt                     shift and go to state 19
+    readLn_stmt                    shift and go to state 20
+    write_stmt                     shift and go to state 21
+    writeln_stmt                   shift and go to state 22
+    variable                       shift and go to state 23
+    if_stmt                        shift and go to state 24
+    while_stmt                     shift and go to state 25
+    for_stmt                       shift and go to state 26
+
+state 86
+
+    (34) logical_or_expr -> logical_or_expr OR . logical_and_expr
+    (36) logical_and_expr -> . logical_and_expr AND logical_not_expr
+    (37) logical_and_expr -> . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    logical_and_expr               shift and go to state 117
+    logical_not_expr               shift and go to state 47
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 87
+
+    (36) logical_and_expr -> logical_and_expr AND . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    logical_not_expr               shift and go to state 118
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 88
+
+    (38) logical_not_expr -> NOT logical_not_expr .
+
+    AND             reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    OR              reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    THEN            reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    DO              reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    SEMI            reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    END             reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    TO              reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    DOWNTO          reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    ELSE            reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    RSQBRACKET      reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+    RPAREN          reduce using rule 38 (logical_not_expr -> NOT logical_not_expr .)
+
+
+state 89
+
+    (41) relational_expr -> simple_exp relational_operator . simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    simple_exp                     shift and go to state 119
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 90
+
+    (48) simple_exp -> simple_exp add_op . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    termo                          shift and go to state 120
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 91
+
+    (42) relational_operator -> EQUAL .
+
+    LENGTH          reduce using rule 42 (relational_operator -> EQUAL .)
+    LPAREN          reduce using rule 42 (relational_operator -> EQUAL .)
+    NUMBER          reduce using rule 42 (relational_operator -> EQUAL .)
+    REAL_LITERAL    reduce using rule 42 (relational_operator -> EQUAL .)
+    STRING_LITERAL  reduce using rule 42 (relational_operator -> EQUAL .)
+    TRUE            reduce using rule 42 (relational_operator -> EQUAL .)
+    FALSE           reduce using rule 42 (relational_operator -> EQUAL .)
+    ID              reduce using rule 42 (relational_operator -> EQUAL .)
+
+
+state 92
+
+    (43) relational_operator -> NEQUAL .
+
+    LENGTH          reduce using rule 43 (relational_operator -> NEQUAL .)
+    LPAREN          reduce using rule 43 (relational_operator -> NEQUAL .)
+    NUMBER          reduce using rule 43 (relational_operator -> NEQUAL .)
+    REAL_LITERAL    reduce using rule 43 (relational_operator -> NEQUAL .)
+    STRING_LITERAL  reduce using rule 43 (relational_operator -> NEQUAL .)
+    TRUE            reduce using rule 43 (relational_operator -> NEQUAL .)
+    FALSE           reduce using rule 43 (relational_operator -> NEQUAL .)
+    ID              reduce using rule 43 (relational_operator -> NEQUAL .)
+
+
+state 93
+
+    (44) relational_operator -> LESSTHEN .
+
+    LENGTH          reduce using rule 44 (relational_operator -> LESSTHEN .)
+    LPAREN          reduce using rule 44 (relational_operator -> LESSTHEN .)
+    NUMBER          reduce using rule 44 (relational_operator -> LESSTHEN .)
+    REAL_LITERAL    reduce using rule 44 (relational_operator -> LESSTHEN .)
+    STRING_LITERAL  reduce using rule 44 (relational_operator -> LESSTHEN .)
+    TRUE            reduce using rule 44 (relational_operator -> LESSTHEN .)
+    FALSE           reduce using rule 44 (relational_operator -> LESSTHEN .)
+    ID              reduce using rule 44 (relational_operator -> LESSTHEN .)
+
+
+state 94
+
+    (45) relational_operator -> LESSEQUALS .
+
+    LENGTH          reduce using rule 45 (relational_operator -> LESSEQUALS .)
+    LPAREN          reduce using rule 45 (relational_operator -> LESSEQUALS .)
+    NUMBER          reduce using rule 45 (relational_operator -> LESSEQUALS .)
+    REAL_LITERAL    reduce using rule 45 (relational_operator -> LESSEQUALS .)
+    STRING_LITERAL  reduce using rule 45 (relational_operator -> LESSEQUALS .)
+    TRUE            reduce using rule 45 (relational_operator -> LESSEQUALS .)
+    FALSE           reduce using rule 45 (relational_operator -> LESSEQUALS .)
+    ID              reduce using rule 45 (relational_operator -> LESSEQUALS .)
+
+
+state 95
+
+    (46) relational_operator -> GREATTHAN .
+
+    LENGTH          reduce using rule 46 (relational_operator -> GREATTHAN .)
+    LPAREN          reduce using rule 46 (relational_operator -> GREATTHAN .)
+    NUMBER          reduce using rule 46 (relational_operator -> GREATTHAN .)
+    REAL_LITERAL    reduce using rule 46 (relational_operator -> GREATTHAN .)
+    STRING_LITERAL  reduce using rule 46 (relational_operator -> GREATTHAN .)
+    TRUE            reduce using rule 46 (relational_operator -> GREATTHAN .)
+    FALSE           reduce using rule 46 (relational_operator -> GREATTHAN .)
+    ID              reduce using rule 46 (relational_operator -> GREATTHAN .)
+
+
+state 96
+
+    (47) relational_operator -> GREATEQUALS .
+
+    LENGTH          reduce using rule 47 (relational_operator -> GREATEQUALS .)
+    LPAREN          reduce using rule 47 (relational_operator -> GREATEQUALS .)
+    NUMBER          reduce using rule 47 (relational_operator -> GREATEQUALS .)
+    REAL_LITERAL    reduce using rule 47 (relational_operator -> GREATEQUALS .)
+    STRING_LITERAL  reduce using rule 47 (relational_operator -> GREATEQUALS .)
+    TRUE            reduce using rule 47 (relational_operator -> GREATEQUALS .)
+    FALSE           reduce using rule 47 (relational_operator -> GREATEQUALS .)
+    ID              reduce using rule 47 (relational_operator -> GREATEQUALS .)
+
+
+state 97
+
+    (50) add_op -> PLUS .
+
+    LENGTH          reduce using rule 50 (add_op -> PLUS .)
+    LPAREN          reduce using rule 50 (add_op -> PLUS .)
+    NUMBER          reduce using rule 50 (add_op -> PLUS .)
+    REAL_LITERAL    reduce using rule 50 (add_op -> PLUS .)
+    STRING_LITERAL  reduce using rule 50 (add_op -> PLUS .)
+    TRUE            reduce using rule 50 (add_op -> PLUS .)
+    FALSE           reduce using rule 50 (add_op -> PLUS .)
+    ID              reduce using rule 50 (add_op -> PLUS .)
+
+
+state 98
+
+    (51) add_op -> MINUS .
+
+    LENGTH          reduce using rule 51 (add_op -> MINUS .)
+    LPAREN          reduce using rule 51 (add_op -> MINUS .)
+    NUMBER          reduce using rule 51 (add_op -> MINUS .)
+    REAL_LITERAL    reduce using rule 51 (add_op -> MINUS .)
+    STRING_LITERAL  reduce using rule 51 (add_op -> MINUS .)
+    TRUE            reduce using rule 51 (add_op -> MINUS .)
+    FALSE           reduce using rule 51 (add_op -> MINUS .)
+    ID              reduce using rule 51 (add_op -> MINUS .)
+
+
+state 99
+
+    (52) termo -> termo mul_op . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    fator                          shift and go to state 121
+    variable                       shift and go to state 55
+
+state 100
+
+    (54) mul_op -> MULT .
+
+    LENGTH          reduce using rule 54 (mul_op -> MULT .)
+    LPAREN          reduce using rule 54 (mul_op -> MULT .)
+    NUMBER          reduce using rule 54 (mul_op -> MULT .)
+    REAL_LITERAL    reduce using rule 54 (mul_op -> MULT .)
+    STRING_LITERAL  reduce using rule 54 (mul_op -> MULT .)
+    TRUE            reduce using rule 54 (mul_op -> MULT .)
+    FALSE           reduce using rule 54 (mul_op -> MULT .)
+    ID              reduce using rule 54 (mul_op -> MULT .)
+
+
+state 101
+
+    (55) mul_op -> DIVIDE .
+
+    LENGTH          reduce using rule 55 (mul_op -> DIVIDE .)
+    LPAREN          reduce using rule 55 (mul_op -> DIVIDE .)
+    NUMBER          reduce using rule 55 (mul_op -> DIVIDE .)
+    REAL_LITERAL    reduce using rule 55 (mul_op -> DIVIDE .)
+    STRING_LITERAL  reduce using rule 55 (mul_op -> DIVIDE .)
+    TRUE            reduce using rule 55 (mul_op -> DIVIDE .)
+    FALSE           reduce using rule 55 (mul_op -> DIVIDE .)
+    ID              reduce using rule 55 (mul_op -> DIVIDE .)
+
+
+state 102
+
+    (56) mul_op -> MODULO .
+
+    LENGTH          reduce using rule 56 (mul_op -> MODULO .)
+    LPAREN          reduce using rule 56 (mul_op -> MODULO .)
+    NUMBER          reduce using rule 56 (mul_op -> MODULO .)
+    REAL_LITERAL    reduce using rule 56 (mul_op -> MODULO .)
+    STRING_LITERAL  reduce using rule 56 (mul_op -> MODULO .)
+    TRUE            reduce using rule 56 (mul_op -> MODULO .)
+    FALSE           reduce using rule 56 (mul_op -> MODULO .)
+    ID              reduce using rule 56 (mul_op -> MODULO .)
+
+
+state 103
+
+    (57) mul_op -> DIV_INT .
+
+    LENGTH          reduce using rule 57 (mul_op -> DIV_INT .)
+    LPAREN          reduce using rule 57 (mul_op -> DIV_INT .)
+    NUMBER          reduce using rule 57 (mul_op -> DIV_INT .)
+    REAL_LITERAL    reduce using rule 57 (mul_op -> DIV_INT .)
+    STRING_LITERAL  reduce using rule 57 (mul_op -> DIV_INT .)
+    TRUE            reduce using rule 57 (mul_op -> DIV_INT .)
+    FALSE           reduce using rule 57 (mul_op -> DIV_INT .)
+    ID              reduce using rule 57 (mul_op -> DIV_INT .)
+
+
+state 104
+
+    (58) fator -> LENGTH LPAREN . expression RPAREN
+    (33) expression -> . logical_or_expr
+    (34) logical_or_expr -> . logical_or_expr OR logical_and_expr
+    (35) logical_or_expr -> . logical_and_expr
+    (36) logical_and_expr -> . logical_and_expr AND logical_not_expr
+    (37) logical_and_expr -> . logical_not_expr
+    (38) logical_not_expr -> . NOT logical_not_expr
+    (39) logical_not_expr -> . relational_expr
+    (40) relational_expr -> . simple_exp
+    (41) relational_expr -> . simple_exp relational_operator simple_exp
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    NOT             shift and go to state 48
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    expression                     shift and go to state 122
+    logical_or_expr                shift and go to state 45
+    logical_and_expr               shift and go to state 46
+    logical_not_expr               shift and go to state 47
+    relational_expr                shift and go to state 49
+    simple_exp                     shift and go to state 50
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 105
+
+    (59) fator -> LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 123
+
+
+state 106
+
+    (79) while_stmt -> WHILE expression DO . cicle_body
+    (80) cicle_body -> . block
+    (81) cicle_body -> . stmt
+    (21) block -> . BEGIN stmt_list opt_semi END
+    (26) stmt -> . assign_stmt
+    (27) stmt -> . conditional_stmt
+    (28) stmt -> . cicle_stmt
+    (29) stmt -> . readLn_stmt
+    (30) stmt -> . write_stmt
+    (31) stmt -> . writeln_stmt
+    (32) assign_stmt -> . variable ASSIGN expression
+    (74) conditional_stmt -> . if_stmt
+    (77) cicle_stmt -> . while_stmt
+    (78) cicle_stmt -> . for_stmt
+    (66) readLn_stmt -> . READLN LPAREN variable RPAREN
+    (67) write_stmt -> . WRITE LPAREN output_args RPAREN
+    (68) writeln_stmt -> . WRITELN LPAREN output_args RPAREN
+    (69) writeln_stmt -> . WRITELN LPAREN RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+    (75) if_stmt -> . IF expression THEN stmt
+    (76) if_stmt -> . IF expression THEN stmt ELSE stmt
+    (79) while_stmt -> . WHILE expression DO cicle_body
+    (82) for_stmt -> . FOR assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> . FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+    BEGIN           shift and go to state 10
+    READLN          shift and go to state 27
+    WRITE           shift and go to state 28
+    WRITELN         shift and go to state 29
+    ID              shift and go to state 30
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    FOR             shift and go to state 33
+
+    cicle_body                     shift and go to state 124
+    block                          shift and go to state 125
+    stmt                           shift and go to state 126
+    assign_stmt                    shift and go to state 17
+    conditional_stmt               shift and go to state 18
+    cicle_stmt                     shift and go to state 19
+    readLn_stmt                    shift and go to state 20
+    write_stmt                     shift and go to state 21
+    writeln_stmt                   shift and go to state 22
+    variable                       shift and go to state 23
+    if_stmt                        shift and go to state 24
+    while_stmt                     shift and go to state 25
+    for_stmt                       shift and go to state 26
+
+state 107
+
+    (82) for_stmt -> FOR assign_stmt TO . simple_exp DO cicle_body
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    simple_exp                     shift and go to state 127
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 108
+
+    (83) for_stmt -> FOR assign_stmt DOWNTO . simple_exp DO cicle_body
+    (48) simple_exp -> . simple_exp add_op termo
+    (49) simple_exp -> . termo
+    (52) termo -> . termo mul_op fator
+    (53) termo -> . fator
+    (58) fator -> . LENGTH LPAREN expression RPAREN
+    (59) fator -> . LPAREN expression RPAREN
+    (60) fator -> . variable
+    (61) fator -> . NUMBER
+    (62) fator -> . REAL_LITERAL
+    (63) fator -> . STRING_LITERAL
+    (64) fator -> . TRUE
+    (65) fator -> . FALSE
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    LENGTH          shift and go to state 53
+    LPAREN          shift and go to state 54
+    NUMBER          shift and go to state 56
+    REAL_LITERAL    shift and go to state 57
+    STRING_LITERAL  shift and go to state 58
+    TRUE            shift and go to state 59
+    FALSE           shift and go to state 60
+    ID              shift and go to state 30
+
+    simple_exp                     shift and go to state 128
+    termo                          shift and go to state 51
+    fator                          shift and go to state 52
+    variable                       shift and go to state 55
+
+state 109
+
+    (5) vars -> listVar DOISPONTOS datatype SEMI .
+    (6) vars -> listVar DOISPONTOS datatype SEMI . vars
+    (5) vars -> . listVar DOISPONTOS datatype SEMI
+    (6) vars -> . listVar DOISPONTOS datatype SEMI vars
+    (7) listVar -> . ID
+    (8) listVar -> . ID VIRG listVar
+
+    BEGIN           reduce using rule 5 (vars -> listVar DOISPONTOS datatype SEMI .)
+    ID              shift and go to state 13
+
+    listVar                        shift and go to state 12
+    vars                           shift and go to state 129
+
+state 110
+
+    (17) arrayType -> ARRAY LSQBRACKET . NUMBER RANGE NUMBER RSQBRACKET OF simpleType
+
+    NUMBER          shift and go to state 130
+
+
+state 111
+
+    (66) readLn_stmt -> READLN LPAREN variable RPAREN .
+
+    SEMI            reduce using rule 66 (readLn_stmt -> READLN LPAREN variable RPAREN .)
+    END             reduce using rule 66 (readLn_stmt -> READLN LPAREN variable RPAREN .)
+    ELSE            reduce using rule 66 (readLn_stmt -> READLN LPAREN variable RPAREN .)
+
+
+state 112
+
+    (67) write_stmt -> WRITE LPAREN output_args RPAREN .
+
+    SEMI            reduce using rule 67 (write_stmt -> WRITE LPAREN output_args RPAREN .)
+    END             reduce using rule 67 (write_stmt -> WRITE LPAREN output_args RPAREN .)
+    ELSE            reduce using rule 67 (write_stmt -> WRITE LPAREN output_args RPAREN .)
+
+
+state 113
+
+    (71) output_args -> output_item VIRG . output_args
+    (70) output_args -> . output_item
+    (71) output_args -> . output_item VIRG output_args
+    (72) output_item -> . STRING_LITERAL
+    (73) output_item -> . variable
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+
+    STRING_LITERAL  shift and go to state 80
+    ID              shift and go to state 30
+
+    output_item                    shift and go to state 79
+    output_args                    shift and go to state 131
+    variable                       shift and go to state 81
+
+state 114
+
+    (68) writeln_stmt -> WRITELN LPAREN output_args RPAREN .
+
+    SEMI            reduce using rule 68 (writeln_stmt -> WRITELN LPAREN output_args RPAREN .)
+    END             reduce using rule 68 (writeln_stmt -> WRITELN LPAREN output_args RPAREN .)
+    ELSE            reduce using rule 68 (writeln_stmt -> WRITELN LPAREN output_args RPAREN .)
+
+
+state 115
+
+    (20) variable -> ID LSQBRACKET expression RSQBRACKET .
+
+    ASSIGN          reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    MULT            reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    DIVIDE          reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    MODULO          reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    DIV_INT         reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    EQUAL           reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    NEQUAL          reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    LESSTHEN        reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    LESSEQUALS      reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    GREATTHAN       reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    GREATEQUALS     reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    PLUS            reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    MINUS           reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    AND             reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    OR              reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    THEN            reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    DO              reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    SEMI            reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    END             reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    TO              reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    DOWNTO          reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    ELSE            reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    RPAREN          reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    VIRG            reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+    RSQBRACKET      reduce using rule 20 (variable -> ID LSQBRACKET expression RSQBRACKET .)
+
+
+state 116
+
+    (75) if_stmt -> IF expression THEN stmt .
+    (76) if_stmt -> IF expression THEN stmt . ELSE stmt
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    SEMI            reduce using rule 75 (if_stmt -> IF expression THEN stmt .)
+    END             reduce using rule 75 (if_stmt -> IF expression THEN stmt .)
+    ELSE            shift and go to state 132
+
+  ! ELSE            [ reduce using rule 75 (if_stmt -> IF expression THEN stmt .) ]
+
+
+state 117
+
+    (34) logical_or_expr -> logical_or_expr OR logical_and_expr .
+    (36) logical_and_expr -> logical_and_expr . AND logical_not_expr
+
+    OR              reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    THEN            reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    DO              reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    SEMI            reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    END             reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    TO              reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    DOWNTO          reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    ELSE            reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    RSQBRACKET      reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    RPAREN          reduce using rule 34 (logical_or_expr -> logical_or_expr OR logical_and_expr .)
+    AND             shift and go to state 87
+
+
+state 118
+
+    (36) logical_and_expr -> logical_and_expr AND logical_not_expr .
+
+    AND             reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    OR              reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    THEN            reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    DO              reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    SEMI            reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    END             reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    TO              reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    DOWNTO          reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    ELSE            reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    RSQBRACKET      reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+    RPAREN          reduce using rule 36 (logical_and_expr -> logical_and_expr AND logical_not_expr .)
+
+
+state 119
+
+    (41) relational_expr -> simple_exp relational_operator simple_exp .
+    (48) simple_exp -> simple_exp . add_op termo
+    (50) add_op -> . PLUS
+    (51) add_op -> . MINUS
+
+    AND             reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    OR              reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    THEN            reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    DO              reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    SEMI            reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    END             reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    TO              reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    DOWNTO          reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    ELSE            reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    RSQBRACKET      reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    RPAREN          reduce using rule 41 (relational_expr -> simple_exp relational_operator simple_exp .)
+    PLUS            shift and go to state 97
+    MINUS           shift and go to state 98
+
+    add_op                         shift and go to state 90
+
+state 120
+
+    (48) simple_exp -> simple_exp add_op termo .
+    (52) termo -> termo . mul_op fator
+    (54) mul_op -> . MULT
+    (55) mul_op -> . DIVIDE
+    (56) mul_op -> . MODULO
+    (57) mul_op -> . DIV_INT
+
+    EQUAL           reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    NEQUAL          reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    LESSTHEN        reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    LESSEQUALS      reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    GREATTHAN       reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    GREATEQUALS     reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    PLUS            reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    MINUS           reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    AND             reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    OR              reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    THEN            reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    DO              reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    SEMI            reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    END             reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    TO              reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    DOWNTO          reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    ELSE            reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    RSQBRACKET      reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    RPAREN          reduce using rule 48 (simple_exp -> simple_exp add_op termo .)
+    MULT            shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULO          shift and go to state 102
+    DIV_INT         shift and go to state 103
+
+    mul_op                         shift and go to state 99
+
+state 121
+
+    (52) termo -> termo mul_op fator .
+
+    MULT            reduce using rule 52 (termo -> termo mul_op fator .)
+    DIVIDE          reduce using rule 52 (termo -> termo mul_op fator .)
+    MODULO          reduce using rule 52 (termo -> termo mul_op fator .)
+    DIV_INT         reduce using rule 52 (termo -> termo mul_op fator .)
+    EQUAL           reduce using rule 52 (termo -> termo mul_op fator .)
+    NEQUAL          reduce using rule 52 (termo -> termo mul_op fator .)
+    LESSTHEN        reduce using rule 52 (termo -> termo mul_op fator .)
+    LESSEQUALS      reduce using rule 52 (termo -> termo mul_op fator .)
+    GREATTHAN       reduce using rule 52 (termo -> termo mul_op fator .)
+    GREATEQUALS     reduce using rule 52 (termo -> termo mul_op fator .)
+    PLUS            reduce using rule 52 (termo -> termo mul_op fator .)
+    MINUS           reduce using rule 52 (termo -> termo mul_op fator .)
+    AND             reduce using rule 52 (termo -> termo mul_op fator .)
+    OR              reduce using rule 52 (termo -> termo mul_op fator .)
+    THEN            reduce using rule 52 (termo -> termo mul_op fator .)
+    DO              reduce using rule 52 (termo -> termo mul_op fator .)
+    SEMI            reduce using rule 52 (termo -> termo mul_op fator .)
+    END             reduce using rule 52 (termo -> termo mul_op fator .)
+    TO              reduce using rule 52 (termo -> termo mul_op fator .)
+    DOWNTO          reduce using rule 52 (termo -> termo mul_op fator .)
+    ELSE            reduce using rule 52 (termo -> termo mul_op fator .)
+    RSQBRACKET      reduce using rule 52 (termo -> termo mul_op fator .)
+    RPAREN          reduce using rule 52 (termo -> termo mul_op fator .)
+
+
+state 122
+
+    (58) fator -> LENGTH LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 133
+
+
+state 123
+
+    (59) fator -> LPAREN expression RPAREN .
+
+    MULT            reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    MODULO          reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    DIV_INT         reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    EQUAL           reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    NEQUAL          reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    LESSTHEN        reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    LESSEQUALS      reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    GREATTHAN       reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    GREATEQUALS     reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    AND             reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    OR              reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    THEN            reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    DO              reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    SEMI            reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    END             reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    TO              reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    DOWNTO          reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    ELSE            reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    RSQBRACKET      reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 59 (fator -> LPAREN expression RPAREN .)
+
+
+state 124
+
+    (79) while_stmt -> WHILE expression DO cicle_body .
+
+    SEMI            reduce using rule 79 (while_stmt -> WHILE expression DO cicle_body .)
+    END             reduce using rule 79 (while_stmt -> WHILE expression DO cicle_body .)
+    ELSE            reduce using rule 79 (while_stmt -> WHILE expression DO cicle_body .)
+
+
+state 125
+
+    (80) cicle_body -> block .
+
+    ELSE            reduce using rule 80 (cicle_body -> block .)
+    SEMI            reduce using rule 80 (cicle_body -> block .)
+    END             reduce using rule 80 (cicle_body -> block .)
+
+
+state 126
+
+    (81) cicle_body -> stmt .
+
+    ELSE            reduce using rule 81 (cicle_body -> stmt .)
+    SEMI            reduce using rule 81 (cicle_body -> stmt .)
+    END             reduce using rule 81 (cicle_body -> stmt .)
+
+
+state 127
+
+    (82) for_stmt -> FOR assign_stmt TO simple_exp . DO cicle_body
+    (48) simple_exp -> simple_exp . add_op termo
+    (50) add_op -> . PLUS
+    (51) add_op -> . MINUS
+
+    DO              shift and go to state 134
+    PLUS            shift and go to state 97
+    MINUS           shift and go to state 98
+
+    add_op                         shift and go to state 90
+
+state 128
+
+    (83) for_stmt -> FOR assign_stmt DOWNTO simple_exp . DO cicle_body
+    (48) simple_exp -> simple_exp . add_op termo
+    (50) add_op -> . PLUS
+    (51) add_op -> . MINUS
+
+    DO              shift and go to state 135
+    PLUS            shift and go to state 97
+    MINUS           shift and go to state 98
+
+    add_op                         shift and go to state 90
+
+state 129
+
+    (6) vars -> listVar DOISPONTOS datatype SEMI vars .
+
+    BEGIN           reduce using rule 6 (vars -> listVar DOISPONTOS datatype SEMI vars .)
+
+
+state 130
+
+    (17) arrayType -> ARRAY LSQBRACKET NUMBER . RANGE NUMBER RSQBRACKET OF simpleType
+
+    RANGE           shift and go to state 136
+
+
+state 131
+
+    (71) output_args -> output_item VIRG output_args .
+
+    RPAREN          reduce using rule 71 (output_args -> output_item VIRG output_args .)
+
+
+state 132
+
+    (76) if_stmt -> IF expression THEN stmt ELSE . stmt
+    (26) stmt -> . assign_stmt
+    (27) stmt -> . conditional_stmt
+    (28) stmt -> . cicle_stmt
+    (29) stmt -> . readLn_stmt
+    (30) stmt -> . write_stmt
+    (31) stmt -> . writeln_stmt
+    (32) assign_stmt -> . variable ASSIGN expression
+    (74) conditional_stmt -> . if_stmt
+    (77) cicle_stmt -> . while_stmt
+    (78) cicle_stmt -> . for_stmt
+    (66) readLn_stmt -> . READLN LPAREN variable RPAREN
+    (67) write_stmt -> . WRITE LPAREN output_args RPAREN
+    (68) writeln_stmt -> . WRITELN LPAREN output_args RPAREN
+    (69) writeln_stmt -> . WRITELN LPAREN RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+    (75) if_stmt -> . IF expression THEN stmt
+    (76) if_stmt -> . IF expression THEN stmt ELSE stmt
+    (79) while_stmt -> . WHILE expression DO cicle_body
+    (82) for_stmt -> . FOR assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> . FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+    READLN          shift and go to state 27
+    WRITE           shift and go to state 28
+    WRITELN         shift and go to state 29
+    ID              shift and go to state 30
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    FOR             shift and go to state 33
+
+    stmt                           shift and go to state 137
+    assign_stmt                    shift and go to state 17
+    conditional_stmt               shift and go to state 18
+    cicle_stmt                     shift and go to state 19
+    readLn_stmt                    shift and go to state 20
+    write_stmt                     shift and go to state 21
+    writeln_stmt                   shift and go to state 22
+    variable                       shift and go to state 23
+    if_stmt                        shift and go to state 24
+    while_stmt                     shift and go to state 25
+    for_stmt                       shift and go to state 26
+
+state 133
+
+    (58) fator -> LENGTH LPAREN expression RPAREN .
+
+    MULT            reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    MODULO          reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    DIV_INT         reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    EQUAL           reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    NEQUAL          reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    LESSTHEN        reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    LESSEQUALS      reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    GREATTHAN       reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    GREATEQUALS     reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    PLUS            reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    MINUS           reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    AND             reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    OR              reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    THEN            reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    DO              reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    SEMI            reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    END             reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    TO              reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    DOWNTO          reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    ELSE            reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    RSQBRACKET      reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 58 (fator -> LENGTH LPAREN expression RPAREN .)
+
+
+state 134
+
+    (82) for_stmt -> FOR assign_stmt TO simple_exp DO . cicle_body
+    (80) cicle_body -> . block
+    (81) cicle_body -> . stmt
+    (21) block -> . BEGIN stmt_list opt_semi END
+    (26) stmt -> . assign_stmt
+    (27) stmt -> . conditional_stmt
+    (28) stmt -> . cicle_stmt
+    (29) stmt -> . readLn_stmt
+    (30) stmt -> . write_stmt
+    (31) stmt -> . writeln_stmt
+    (32) assign_stmt -> . variable ASSIGN expression
+    (74) conditional_stmt -> . if_stmt
+    (77) cicle_stmt -> . while_stmt
+    (78) cicle_stmt -> . for_stmt
+    (66) readLn_stmt -> . READLN LPAREN variable RPAREN
+    (67) write_stmt -> . WRITE LPAREN output_args RPAREN
+    (68) writeln_stmt -> . WRITELN LPAREN output_args RPAREN
+    (69) writeln_stmt -> . WRITELN LPAREN RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+    (75) if_stmt -> . IF expression THEN stmt
+    (76) if_stmt -> . IF expression THEN stmt ELSE stmt
+    (79) while_stmt -> . WHILE expression DO cicle_body
+    (82) for_stmt -> . FOR assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> . FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+    BEGIN           shift and go to state 10
+    READLN          shift and go to state 27
+    WRITE           shift and go to state 28
+    WRITELN         shift and go to state 29
+    ID              shift and go to state 30
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    FOR             shift and go to state 33
+
+    assign_stmt                    shift and go to state 17
+    cicle_body                     shift and go to state 138
+    block                          shift and go to state 125
+    stmt                           shift and go to state 126
+    conditional_stmt               shift and go to state 18
+    cicle_stmt                     shift and go to state 19
+    readLn_stmt                    shift and go to state 20
+    write_stmt                     shift and go to state 21
+    writeln_stmt                   shift and go to state 22
+    variable                       shift and go to state 23
+    if_stmt                        shift and go to state 24
+    while_stmt                     shift and go to state 25
+    for_stmt                       shift and go to state 26
+
+state 135
+
+    (83) for_stmt -> FOR assign_stmt DOWNTO simple_exp DO . cicle_body
+    (80) cicle_body -> . block
+    (81) cicle_body -> . stmt
+    (21) block -> . BEGIN stmt_list opt_semi END
+    (26) stmt -> . assign_stmt
+    (27) stmt -> . conditional_stmt
+    (28) stmt -> . cicle_stmt
+    (29) stmt -> . readLn_stmt
+    (30) stmt -> . write_stmt
+    (31) stmt -> . writeln_stmt
+    (32) assign_stmt -> . variable ASSIGN expression
+    (74) conditional_stmt -> . if_stmt
+    (77) cicle_stmt -> . while_stmt
+    (78) cicle_stmt -> . for_stmt
+    (66) readLn_stmt -> . READLN LPAREN variable RPAREN
+    (67) write_stmt -> . WRITE LPAREN output_args RPAREN
+    (68) writeln_stmt -> . WRITELN LPAREN output_args RPAREN
+    (69) writeln_stmt -> . WRITELN LPAREN RPAREN
+    (19) variable -> . ID
+    (20) variable -> . ID LSQBRACKET expression RSQBRACKET
+    (75) if_stmt -> . IF expression THEN stmt
+    (76) if_stmt -> . IF expression THEN stmt ELSE stmt
+    (79) while_stmt -> . WHILE expression DO cicle_body
+    (82) for_stmt -> . FOR assign_stmt TO simple_exp DO cicle_body
+    (83) for_stmt -> . FOR assign_stmt DOWNTO simple_exp DO cicle_body
+
+    BEGIN           shift and go to state 10
+    READLN          shift and go to state 27
+    WRITE           shift and go to state 28
+    WRITELN         shift and go to state 29
+    ID              shift and go to state 30
+    IF              shift and go to state 31
+    WHILE           shift and go to state 32
+    FOR             shift and go to state 33
+
+    assign_stmt                    shift and go to state 17
+    cicle_body                     shift and go to state 139
+    block                          shift and go to state 125
+    stmt                           shift and go to state 126
+    conditional_stmt               shift and go to state 18
+    cicle_stmt                     shift and go to state 19
+    readLn_stmt                    shift and go to state 20
+    write_stmt                     shift and go to state 21
+    writeln_stmt                   shift and go to state 22
+    variable                       shift and go to state 23
+    if_stmt                        shift and go to state 24
+    while_stmt                     shift and go to state 25
+    for_stmt                       shift and go to state 26
+
+state 136
+
+    (17) arrayType -> ARRAY LSQBRACKET NUMBER RANGE . NUMBER RSQBRACKET OF simpleType
+
+    NUMBER          shift and go to state 140
+
+
+state 137
+
+    (76) if_stmt -> IF expression THEN stmt ELSE stmt .
+
+    SEMI            reduce using rule 76 (if_stmt -> IF expression THEN stmt ELSE stmt .)
+    END             reduce using rule 76 (if_stmt -> IF expression THEN stmt ELSE stmt .)
+    ELSE            reduce using rule 76 (if_stmt -> IF expression THEN stmt ELSE stmt .)
+
+
+state 138
+
+    (82) for_stmt -> FOR assign_stmt TO simple_exp DO cicle_body .
+
+    SEMI            reduce using rule 82 (for_stmt -> FOR assign_stmt TO simple_exp DO cicle_body .)
+    END             reduce using rule 82 (for_stmt -> FOR assign_stmt TO simple_exp DO cicle_body .)
+    ELSE            reduce using rule 82 (for_stmt -> FOR assign_stmt TO simple_exp DO cicle_body .)
+
+
+state 139
+
+    (83) for_stmt -> FOR assign_stmt DOWNTO simple_exp DO cicle_body .
+
+    SEMI            reduce using rule 83 (for_stmt -> FOR assign_stmt DOWNTO simple_exp DO cicle_body .)
+    END             reduce using rule 83 (for_stmt -> FOR assign_stmt DOWNTO simple_exp DO cicle_body .)
+    ELSE            reduce using rule 83 (for_stmt -> FOR assign_stmt DOWNTO simple_exp DO cicle_body .)
+
+
+state 140
+
+    (17) arrayType -> ARRAY LSQBRACKET NUMBER RANGE NUMBER . RSQBRACKET OF simpleType
+
+    RSQBRACKET      shift and go to state 141
+
+
+state 141
+
+    (17) arrayType -> ARRAY LSQBRACKET NUMBER RANGE NUMBER RSQBRACKET . OF simpleType
+
+    OF              shift and go to state 142
+
+
+state 142
+
+    (17) arrayType -> ARRAY LSQBRACKET NUMBER RANGE NUMBER RSQBRACKET OF . simpleType
+    (11) simpleType -> . INTEGER_TYPE
+    (12) simpleType -> . BOOLEAN_TYPE
+    (13) simpleType -> . STRING_TYPE
+    (14) simpleType -> . REAL_TYPE
+    (15) simpleType -> . CHAR_TYPE
+
+    INTEGER_TYPE    shift and go to state 66
+    BOOLEAN_TYPE    shift and go to state 67
+    STRING_TYPE     shift and go to state 68
+    REAL_TYPE       shift and go to state 69
+    CHAR_TYPE       shift and go to state 70
+
+    simpleType                     shift and go to state 143
+
+state 143
+
+    (17) arrayType -> ARRAY LSQBRACKET NUMBER RANGE NUMBER RSQBRACKET OF simpleType .
+
+    SEMI            reduce using rule 17 (arrayType -> ARRAY LSQBRACKET NUMBER RANGE NUMBER RSQBRACKET OF simpleType .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 116 resolved as shift

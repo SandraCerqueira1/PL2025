@@ -1,0 +1,24 @@
+program SequenciaFibonacci;
+
+var
+  n, a, b, temp, contador: integer;
+
+begin
+  writeln('Quantos termos da sequência de Fibonacci deseja ver?');
+  readln(n);
+
+  a := 0;
+  b := 1;
+  contador := 1;
+
+  writeln('Sequência de Fibonacci:');
+
+  while contador <= n do
+  begin
+    writeln(a);
+    temp := a + b;
+    a := b;
+    b := temp;
+    contador := contador + 1;
+  end;
+end.

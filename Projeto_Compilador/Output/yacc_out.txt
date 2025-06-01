@@ -1,0 +1,56 @@
+AST:
+Programa(BinarioParaInteiro, Opt_variable(Variables([VarDecl(['bin'], Datatype(SimpleType(string))), VarDecl(['i', 'valor', 'potencia'], Datatype(SimpleType(integer)))])), Block(StmtList([WriteLnStmt(OutputArgs([OutputItem(Introduza uma string binária:)])), ReadLnStmt(Variable(bin)), Assign(Variable(valor), Number(0)), Assign(Variable(potencia), Number(1)), For(Assign(Variable(i), Length(Variable(bin))), DOWNTO Number(1), Block(StmtList([If(RelOp(=, Variable(bin[Variable(i)]), String(1)), Then=Assign(Variable(valor), BinOp(+, Variable(valor), Variable(potencia)))), Assign(Variable(potencia), BinOp(*, Variable(potencia), Number(2)))]))), WriteLnStmt(OutputArgs([OutputItem(O valor inteiro correspondente é: ), OutputItem(Variable(valor))]))])))
+
+Código para a VM:
+PUSHS ""
+PUSHI 0
+PUSHI 0
+PUSHI 0
+START
+PUSHS "Introduza uma string binária:"
+WRITES
+WRITELN
+READ
+STOREG 0
+PUSHI 0
+STOREG 2
+PUSHI 1
+STOREG 3
+PUSHG 0
+STRLEN
+STOREG 1
+for1:
+PUSHG 1
+PUSHI 1
+SUPEQ
+JZ endfor1
+PUSHG 0
+PUSHG 1
+PUSHI 1
+SUB
+CHARAT
+PUSHS "1"
+CHRCODE
+EQUAL
+JZ endif1
+PUSHG 2
+PUSHG 3
+ADD
+STOREG 2
+endif1:
+PUSHG 3
+PUSHI 2
+MUL
+STOREG 3
+PUSHG 1
+PUSHI 1
+SUB
+STOREG 1
+JUMP for1
+endfor1:
+PUSHS "O valor inteiro correspondente é: "
+WRITES
+PUSHG 2
+WRITEI
+WRITELN
+STOP
